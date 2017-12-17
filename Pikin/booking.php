@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
-<title>Pikin</title>
+<title>Pikin - Booking Service</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap-slider.min.css">
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
@@ -13,7 +13,8 @@
 
 <body>
 
-<div id="header-holder" class="inner-header contact-header">
+<div id="header-holder" class="inner-header">
+    <div class="bg-animation"></div>
     <nav id="nav" class="navbar navbar-default navbar-full">
         <div class="container-fluid">
             <div class="container container-nav">
@@ -25,14 +26,14 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="logo-holder" href="index.html">
+                            <a class="logo-holder" href="index.php">
                                 <div class="logo" style="width:62px;height:18px"></div>
                             </a>
                         </div>
                         <div style="height: 1px;" role="main" aria-expanded="false" class="navbar-collapse collapse" id="bs">
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="index.html">Home</a></li>
-                                <li><a href="#">Family DayCare Educator Booking Service</a><li>
+                                <li><a href="booking.html">Family DayCare Educator Booking Service</a><li>
                                 <li><a class="login-button" href="signin.html">Login/Sign-Up</a></li>
                                 <li class="support-button-holder support-dropdown">
                                     <a class="support-button" href="#">Support</a>
@@ -53,88 +54,66 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <div class="page-title">Contact us</div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="text">We are offering you affordable and quality early<br>
-                     childhood educators near you. Search from more than 1,000+ partner educators!<br>
-                </div>
+                    <div class="page-title">Family DayCare Educator Booking Service</div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div id="contact-info" class="container-fluid">
+<div id="page-content" class="container-fluid">
     <div class="container">
+        <form id="booking" action="bookingp.php" method="POST">
         <div class="row">
-            <div class="col-md-12">
-                <div class="row-title">What makes us special?</div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="info-box">
-                    <div class="info-title phone-icon">Call Us</div>
-                    <div class="info-details"><p>Enjoy a free consultation with our Pikin Team of Experts.</p>
-
-                <p>Customer service 24/7
-                    Call Us On <a href="#">+61-411-240-300</a></p></div>
+            <div align="center">
+                <div class="signin-signup-form">
+                <div class="form-items">
+                    <div class="form-title"></div>
+                        <div class="form-text">
+                            <input type="text" name="suburb" placeholder="Enter you Suburb Here" required>
+                        </div>
+                        <div class="form-text text-holder">
+                            <span class="text-only">Select type of service required</span>
+                            <select name="typeofservice" >
+                                <option name="typeofservice" value="Pickoff and Dropoff">Pick off and drop off</option>
+                                <option name="typeofservice" value="Morning Childcare Service">Morning Childcare Service</option>
+                                <option name="typeofservice" value="Evening Childcare Service">Evening Childcare Service</option>
+                            </select>
+                        </div>
+                        <div class="form-text text-holder">
+                            <span class="text-only">Choose days of the week you are interested in</span><br>
+                            <input type="checkbox" name="day[]" id="sunday" value="sunday"><label for="sunday"  >Sunday</label>
+                            <input type="checkbox" name="day[]" id="monday" value="monday"><label for="monday"  >Monday</label>
+                            <input type="checkbox" name="day[]" id="tuesday" value="tuesday"><label for="tuesday"  >Tuesday</label>
+                            <input type="checkbox" name="day[]" id="wednesday" value="wednesday" ><label for="wednesday" >Wednesday</label>
+                            <input type="checkbox" name="day[]" id="thursday" value="thursday" ><label for="thursday" >Thursday</label>
+                            <input type="checkbox" name="day[]" id="friday" value="friday"><label for="friday" >Friday</label>
+                            <input type="checkbox" name="day[]" id="saturday" value="saturday"><label for="saturday">Saturday</label>
+                        </div><br>
+                        <div class="col-md-6 form-text">
+                            <span class="text-only">Please choose service start time</span>
+                            <input type="time" name="starttime" id="start-time" placeholder="" required>
+                        </div>
+                        <div class="col-md-6 form-text">
+                            <span class="text-only">Please choose service end time</span>
+                            <input type="time" name="endtime" id="end-time" placeholder="" required>
+                        </div>
+                        <div class="form-text text-holder">
+                            <br><br><span class="text-only">Preferred method of payment.</span><br>
+                            <input type="radio" name="paymentmethod" class="hno-radiobtn" id="paypal" value="Paypal"><label for="paypal">Paypal</label>
+                            <input type="radio" name="paymentmethod" class="hno-radiobtn" id="cc" value="Credit Card"><label for="cc">Credit Card</label>
+                        </div>
+                        <div class="form-button">
+                            <button id="submit" type="submit" class="ybtn ybtn-purple">Book Service</button>
+                            <?php 
+                            $reasons = array("booking" => "Booking not Successful, Please Try Again Later", "blank" => "You have left one or more fields blank."); 
+                            if ($_GET["bookingFailed"]) echo $reasons[$_GET["reason"]]; 
+                            ?>
+                        </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="info-box">
-                    <div class="info-title chat-icon">Mail Us</div>
-                    <div class="info-details"><p>We have answers to all your
-                    questions.</p>
-
-                    <p>Start sending your emails to us at info@pikin.com.au</p></div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="info-box">
-                    <div class="info-title location-icon">Visit us</div>
-                    <div class="info-details"><p>We are located in Australia.
-                    Come and have answers to your questions!</p>
-
-                    <p>City Avenue, Office 64, Floor 6,  Milbourne,</p></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="extra-info" class="container-fluid">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="text-holder">
-                    <h1>Let's help you find the Best Family Day Care Educator near you!</h1>
-                    
-                </div>
-            </div>
-            <div class="col-md-6 link-holder">
-                <a href="index.html" class="ybtn ybtn-pink ybtn-shadow">Search with surburb/postcode</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--blog-->
-
-<div id="message1" class="container-fluid message-area normal-bg">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-6">
-                <div class="text-purple-light">Are you ready?</div>
-                <div class="text-purple-dark">Join Australia’s fastest growing family day care educator booking service. </div>
-            </div>
-            <div class="col-sm-12 col-md-6">
-                <div class="buttons-holder">
-                    <a href="signup.html" class="ybtn ybtn-purple">Create Your Account</a><a href="about.html" class="ybtn ybtn-white ybtn-shadow">Learn More</a>
                 </div>
             </div>
         </div>
+        </form>
     </div>
 </div>
 <div id="footer" class="container-fluid">
@@ -170,7 +149,7 @@
                 <div class="footer-menu-holder">
                     <h4>Parents</h4>
                     <ul class="footer-menu">
-                        <li><a href="#">Help</a></li>
+                        <li><a href="help.html">Help</a></li>
                         <li><a href="#">Testimonials</a></li>
                         <li><a href="signup.html">Sign Up/Log In</a></li>
                     </ul>

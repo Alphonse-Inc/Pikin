@@ -99,3 +99,4 @@ $(window).on("load", function() {
         $(".info-d"+$(this).data("id"), "#more-info").addClass("show-details");
     });
 });
+

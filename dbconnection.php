@@ -1,5 +1,5 @@
 <?php 
-$host = "localhost";
+$host = "aussicouncil-production.c9pbg7so34fm.us-west-2.rds.amazonaws.com";
 $username = "root";
 $password = "root";
 $database = "pickin";

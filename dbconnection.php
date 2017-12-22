@@ -1,7 +1,7 @@
 <?php 
 $host = "aussicouncil-production.c9pbg7so34fm.us-west-2.rds.amazonaws.com";
 $username = "pickin";
-$password = "Pickcrm#3@1s";
+$password = "Pickcrm#3@1";
 $database = "pickin";
 
 $connection = new mysqli ($host, $username, $password, $database);
